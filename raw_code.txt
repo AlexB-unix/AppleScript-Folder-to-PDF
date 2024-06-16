@@ -1,0 +1,13 @@
+use AppleScript version "2.4" -- Yosemite (10.10) or later
+use scripting additions
+
+
+tell application "Finder"
+	set THE_FOLDER to selection as alias
+	set THE_FOLDER_NAME to name of THE_FOLDER
+	set THE_FOLDER_POSIX to quoted form of POSIX path of THE_FOLDER
+	
+	tell application "Terminal"
+		do script "cd " & THE_FOLDER_POSIX & " && " & "convert * " & (quoted form of (THE_FOLDER_NAME & ".pdf"))
+	end tell
+end tell
